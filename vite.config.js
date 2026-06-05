@@ -3,7 +3,10 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
-export default defineConfig({
+// base: o app é publicado em https://<user>.github.io/Carteirinha.poc/ no
+// GitHub Pages. Em dev/preview o base é "/" (raiz).
+export default defineConfig(({ command }) => ({
+  base: command === 'build' ? '/Carteirinha.poc/' : '/',
   plugins: [
     react(),
     VitePWA({
@@ -43,4 +46,4 @@ export default defineConfig({
       },
     }),
   ],
-})
+}))
