@@ -1,22 +1,27 @@
-// Armazenamento local da imagem da carteirinha (persiste no dispositivo via
-// localStorage). A imagem é guardada como dataURL JPEG já redimensionado.
+// Armazenamento local dos dados da carteirinha (persiste no dispositivo via
+// localStorage): foto da pessoa (dataURL JPEG redimensionado) + campos.
 
-const STORAGE_KEY = 'carteirinha.image.v1'
+const STORAGE_KEY = 'carteirinha.data.v2'
 
-export function loadCarteirinhaImage() {
+const EMPTY = { photo: null, nome: '', documento: '', ra: '', curso: '', updatedAt: null }
+
+export function loadCarteirinhaData() {
   try {
-    return localStorage.getItem(STORAGE_KEY)
+    const raw = localStorage.getItem(STORAGE_KEY)
+    if (!raw) return { ...EMPTY }
+    return { ...EMPTY, ...JSON.parse(raw) }
   } catch {
-    return null
+    return { ...EMPTY }
   }
 }
 
-export function saveCarteirinhaImage(dataUrl) {
-  // Pode lançar QuotaExceededError se a imagem for grande demais.
-  localStorage.setItem(STORAGE_KEY, dataUrl)
+export function saveCarteirinhaData(data) {
+  // Pode lançar QuotaExceededError se a foto for grande demais.
+  const record = { ...EMPTY, ...data, updatedAt: Date.now() }
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(record))
 }
 
-export function clearCarteirinhaImage() {
+export function clearCarteirinhaData() {
   try {
     localStorage.removeItem(STORAGE_KEY)
   } catch {
@@ -24,9 +29,9 @@ export function clearCarteirinhaImage() {
   }
 }
 
-// Lê o arquivo, redimensiona e comprime para um dataURL JPEG, mantendo o
-// tamanho sob controle para caber no localStorage.
-export function fileToResizedDataUrl(file, { maxDim = 1600, quality = 0.85 } = {}) {
+// Lê o arquivo de imagem, redimensiona e comprime para um dataURL JPEG,
+// mantendo o tamanho sob controle para caber no localStorage.
+export function fileToResizedDataUrl(file, { maxDim = 1000, quality = 0.85 } = {}) {
   return new Promise((resolve, reject) => {
     if (!file || !file.type.startsWith('image/')) {
       reject(new Error('Selecione um arquivo de imagem.'))
