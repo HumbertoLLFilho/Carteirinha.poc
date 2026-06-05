@@ -3,6 +3,7 @@ name: Deploy PWA to GitHub Pages
 on:
   push:
     branches:
+      - main
       - claude/student-id-card-app-9gy2U
   workflow_dispatch:
 
