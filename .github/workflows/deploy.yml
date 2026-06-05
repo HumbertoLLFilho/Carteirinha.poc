@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - main
-      - claude/student-id-card-app-9gy2U
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 # Permissões necessárias para publicar no GitHub Pages
@@ -13,12 +15,13 @@ permissions:
   pages: write
   id-token: write
 
-# Permite apenas um deploy concorrente
+# Não cancela um deploy de produção em andamento
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
+  # Compila em todo push no main e em todo PR para o main (validação).
   build:
     runs-on: ubuntu-latest
     steps:
@@ -37,18 +40,21 @@ jobs:
       - name: Build
         run: npm run build
 
+      # Os passos de Pages só são necessários para a publicação (no main).
       - name: Setup Pages
+        if: github.event_name != 'pull_request'
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Upload artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
+  # Publica apenas quando não é PR (push no main ou disparo manual).
   deploy:
     needs: build
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
