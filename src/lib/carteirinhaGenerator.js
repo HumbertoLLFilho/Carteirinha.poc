@@ -19,10 +19,10 @@ const LAYOUT = {
   value: { font: '700 38px Arial, Helvetica, sans-serif', color: '#1c2440' },
   maxValueWidth: 620,
   fields: [
-    { key: 'nome', label: 'Nome', labelY: 215, valueY: 255 },
-    { key: 'documento', label: 'Documento', labelY: 305, valueY: 345 },
-    { key: 'ra', label: 'RA', labelY: 395, valueY: 435 },
-    { key: 'curso', label: 'Curso', labelY: 485, valueY: 525 },
+    { key: 'nome', label: 'Nome', labelY: 240, valueY: 278 },
+    { key: 'curso', label: 'Curso', labelY: 320, valueY: 358 },
+    { key: 'ra', label: 'RA', labelY: 400, valueY: 438 },
+    { key: 'validade', label: 'Validade', labelY: 480, valueY: 518 },
   ],
 }
 

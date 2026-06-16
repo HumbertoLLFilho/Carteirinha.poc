@@ -3,7 +3,7 @@
 
 const STORAGE_KEY = 'carteirinha.data.v2'
 
-const EMPTY = { photo: null, nome: '', documento: '', ra: '', curso: '', updatedAt: null }
+const EMPTY = { photo: null, nome: '', curso: '', ra: '', validade: '', updatedAt: null }
 
 export function loadCarteirinhaData() {
   try {
