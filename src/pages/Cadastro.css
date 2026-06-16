@@ -1,0 +1,109 @@
+.cad {
+  padding: 20px 16px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cad-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.cad-file {
+  display: none;
+}
+
+.cad-photo-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.cad-photo-frame {
+  width: 96px;
+  height: 124px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #eef1f7;
+  border: 1px solid #cdd3e3;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cad-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cad-photo-empty {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.cad-photo-btn {
+  flex: 1;
+}
+
+.cad-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cad-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cad-field-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.cad-input {
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--ink);
+  padding: 11px 12px;
+  border: 1px solid #cdd3e3;
+  border-radius: 10px;
+  background: #fff;
+  outline: none;
+}
+
+.cad-input:focus {
+  border-color: var(--c-blue);
+}
+
+.cad-btn {
+  padding: 13px 12px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.cad-btn--primary {
+  background: var(--c-blue);
+  color: #fff;
+}
+
+.cad-btn:disabled {
+  opacity: 0.6;
+}
+
+.cad-save {
+  margin-top: 4px;
+}
+
+.cad-error {
+  font-size: 14px;
+  color: var(--c-red);
+  text-align: center;
+}

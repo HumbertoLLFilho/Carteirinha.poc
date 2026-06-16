@@ -116,3 +116,12 @@ export function HomeIcon({ size = 26, ...props }) {
     </svg>
   )
 }
+
+export function ArrowLeftIcon({ size = 26, ...props }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} {...base} {...props}>
+      <line x1="20" y1="12" x2="5" y2="12" />
+      <polyline points="12 19 5 12 12 5" />
+    </svg>
+  )
+}
